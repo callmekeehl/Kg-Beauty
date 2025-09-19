@@ -31,24 +31,33 @@ class _CustomNavbarState extends State<CustomNavbar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: widget._pageList[_selectedIndex],
-      backgroundColor: Colors.white,
+      backgroundColor: beigeColor,
       bottomNavigationBar: Container(
-        margin: EdgeInsets.only(bottom: 25.h),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(topRight: Radius.circular(30.r), topLeft: Radius.circular(30.r))
+          decoration: BoxDecoration(
+
+              color: Colors.white,
+              borderRadius: BorderRadius.only(topRight: Radius.circular(30.r), topLeft: Radius.circular(30.r))
+          ),
+          child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30.r),
+                topLeft: Radius.circular(30.r),
+          ),
+
+            child: Container(
+              padding: EdgeInsets.only(bottom: 25.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildNavItem("assets/icons/home.svg", 0),
+                  _buildNavItem("assets/icons/favorite2.svg", 1),
+                  _buildNavItem("assets/icons/notification.svg", 2),
+                  _buildNavItem("assets/icons/search.svg", 3),
+                ],
+              ),
+            ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildNavItem("assets/icons/home.svg", 0),
-            _buildNavItem("assets/icons/favorite2.svg", 1),
-            _buildNavItem("assets/icons/notification.svg", 2),
-            _buildNavItem("assets/icons/search.svg", 3),
-          ],
-        ),
-      ),
-    );
+    ));
   }
 
   _buildNavItem(String icon, int index){

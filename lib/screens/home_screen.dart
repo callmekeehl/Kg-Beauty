@@ -1,4 +1,6 @@
 import 'package:beauty_cos/constants/colors.dart';
+import 'package:beauty_cos/screens/detail_screen.dart';
+import 'package:beauty_cos/screens/explore_screen.dart';
 import 'package:beauty_cos/widgets/categorie_card.dart';
 import 'package:beauty_cos/widgets/popular_card.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Categories", style: TextStyle(color: brownColor, fontSize: 20, fontWeight: FontWeight.bold),),
-                  IconButton(onPressed: (){}, icon: Icon(Icons.more_horiz_outlined, color: brownColor, size: 25.r,))
+                  IconButton(
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ExploreScreen()));
+                      },
+                      icon: Icon(Icons.more_horiz_outlined, color: brownColor, size: 25.r,))
                 ],
               ),
 
@@ -100,7 +106,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: widget._popList.length,
                     itemBuilder: (context, int index){
-                      return widget._popList[index];
+                      return GestureDetector(
+                        onTap: ()=>{
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> DetailScreen(image: widget._popList[index].image, type: widget._popList[index].type, label: widget._popList[index].label)))
+                        },
+                        child: widget._popList[index],
+                      );
                     }),
               )
             ],
